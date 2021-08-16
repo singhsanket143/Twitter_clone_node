@@ -1,5 +1,6 @@
 const express = require('express');
 const router = require('./src/routes/index');
+const connect = require('./src/config/database');
 
 var expressLayouts = require('express-ejs-layouts');
 
@@ -19,6 +20,7 @@ app.use('/', router);
 
 console.log(__dirname+'/src/assets');
 
-app.listen(3000, () => {
+app.listen(3000, async () => {
+    await connect();
     console.log('Server started at 3000!!');
 });
