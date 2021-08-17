@@ -1,10 +1,19 @@
 const express = require('express');
+const {json, urlencoded} = require('body-parser');
+const cors = require('cors');
+
+
 const router = require('./src/routes/index');
 const connect = require('./src/config/database');
 
 var expressLayouts = require('express-ejs-layouts');
 
 const app = express();
+
+app.use(cors());
+app.use(json());
+app.use(urlencoded({extended: true}));
+
 app.use(express.static(__dirname+'/src/assets'));
 app.set('layout extractStyles', true);
 app.set('layout extractScripts', true);
