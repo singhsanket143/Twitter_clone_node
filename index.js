@@ -1,7 +1,10 @@
 const express = require('express');
 const {json, urlencoded} = require('body-parser');
 const cors = require('cors');
+const session = require('express-session');
+const passport = require('passport');
 
+const passportlocal = require('./src/config/passport-local-strategy');
 
 const router = require('./src/routes/index');
 const connect = require('./src/config/database');
@@ -23,6 +26,18 @@ app.set('layout', __dirname+'/src/views/layouts/layout');
 app.set('view engine', 'ejs');
 app.set('views', './src/views');
 
+app.use(session({
+    name: 'twitter',
+    secret: 'sanketunacademy',
+    resave: false,
+    cookie: {
+        maxAge: 6000000
+    }
+}))
+
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/', router);
 // app.set('layout', true);
