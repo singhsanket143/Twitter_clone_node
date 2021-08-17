@@ -4,7 +4,7 @@ const {profile, signIn, signUp, create, createSession} = require('../controllers
 
 const router = express.Router();
 
-router.get('/profile', profile);
+router.get('/profile', passport.checkAuthentication, profile);
 router.get('/signin', signIn);
 router.get('/signup', signUp);
 router.post('/create', create);
