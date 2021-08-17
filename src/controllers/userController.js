@@ -5,12 +5,18 @@ const profile = function(req, res) {
 }
 
 const signUp = function(req, res) {
+    if(req.isAuthenticated()) {
+        return res.redirect('/users/profile');
+    }
     return res.render('users/user_sign_up', {
         title: 'Twitter | Sign Up'
     });
 }
 
 const signIn = function(req, res) {
+    if(req.isAuthenticated()) {
+        return res.redirect('/users/profile');
+    }
     return res.render('users/user_sign_in', {
         title: 'Twitter | Sign In'
     });
