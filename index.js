@@ -4,6 +4,7 @@ const cors = require('cors');
 const session = require('express-session');
 const passport = require('passport');
 const mongoStore = require('connect-mongo');
+const sassMiddleware = require('node-sass-middleware');
 
 const passportlocal = require('./src/config/passport-local-strategy');
 
@@ -13,6 +14,14 @@ const connect = require('./src/config/database');
 var expressLayouts = require('express-ejs-layouts');
 
 const app = express();
+
+app.use(sassMiddleware({
+    src: './src/assets/scss',
+    dest: './src/assets/css',
+    debug: true,
+    outputStyle: 'expanded',
+    prefix: '/css'
+}));
 
 app.use(cors());
 app.use(json());
