@@ -1,5 +1,5 @@
 <h1>Welcome to <%= title %></h1>
-
+<% if(locals.user) { %> 
 <section>
     <h4>Create A Tweet!</h4>
     <form action="/tweets/create" method="POST">
@@ -7,3 +7,12 @@
         <input type="submit" value="Create Tweet">
     </form>
 </section>
+<% } %> 
+<div>
+    <ul>
+        <% for(tweet of tweets) { %>
+            <li><%= tweet.content %> </li>
+            <small><%= tweet.user.name %></small>
+        <% } %>  
+    </ul>
+</div>
