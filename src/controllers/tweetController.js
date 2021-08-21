@@ -14,7 +14,7 @@ const create = function(req, res) {
 }
 
 const destroy = function(req, res) {
-    console.log("Hit");
+    // console.log(req);
     Tweet.findById(req.params.id, function(err, tweet) {
         if(err) {
             return res.redirect('/');
