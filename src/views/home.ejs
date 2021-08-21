@@ -11,7 +11,13 @@
 <div>
     <ul>
         <% for(tweet of tweets) { %>
-            <li><h2><%= tweet.content %></h2> </li>
+            <li><h2><%= tweet.content %></h2> 
+            <% if(locals.user && locals.user.id == tweet.user.id) { %>  
+                <form action="/tweets/destroy/<%= tweet.id%>" method="GET">
+                    <input type="submit" value="Remove">
+                </form>
+            <% } %> 
+            </li>
             <small><b><%= tweet.user.name %></b></small>
             <div>
                 <% if (locals.user) { %>
