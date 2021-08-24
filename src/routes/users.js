@@ -18,7 +18,7 @@ router.post('/create', create);
 router.post('/update/:id', passport.checkAuthentication, update);
 router.post('/create-session', passport.authenticate(
     'local',
-    { successRedirect: '/',
+    {
     failureRedirect: '/signin'}
 ),createSession);
 
