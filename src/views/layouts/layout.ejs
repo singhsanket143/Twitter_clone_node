@@ -5,17 +5,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css" integrity="sha512-0p3K0H3S6Q4bEWZ/WmC94Tgit2ular2/n0ESdfEX8l172YyQj8re1Wu9s/HT9T/T2osUw5Gx/6pAZNk3UKbESw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/css/layout.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js" integrity="sha512-lOrm9FgT1LKOJRUXF3tp6QaMorJftUjowOWiDcG5GFZ/q7ukof19V0HKx/GWzXCdt9zYju3/KhBNdCLzK8b90Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>   
     <%- style %>
 </head>
 <body>
     <%- include('../util/_header'); %>
     <div id="flash-section">
         <% if(flash.success && flash.success.length > 0) {%> 
-            <h4><%= flash.success %> </h4>
+            <div class="alert alert-success" role="alert">
+                <%= flash.success %> 
+            </div>
         <% } %> 
-        <% if(flash.info && flash.info.length > 0) {%> 
-            <h4><%= flash.info %> </h4>
+        <% if(flash.error && flash.error.length > 0) {%> 
+            <div class="alert alert-info" role="alert">
+                <%= flash.error %> 
+            </div>
         <% } %> 
     </div>
     
@@ -24,5 +31,22 @@
     <%- include('../util/_footer'); %>
 
     <%- script %>
+
+    
+    <% if(flash.info && flash.info.length > 0) { %>
+        <script>
+            new Noty({
+                theme: 'relax',
+                text: '<%= flash.info %>',
+                type: 'success',
+                layout: 'topRight'
+            }).show();
+        </script>
+    <% } %>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+    
 </body>
+
 </html>

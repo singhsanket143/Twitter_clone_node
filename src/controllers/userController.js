@@ -75,7 +75,7 @@ const createSession = function(req, res) {
 
 const destroySession = function(req, res) {
     req.logout();
-    req.flash('success', 'Signed Out Successfully');
+    req.flash('info', 'Signed Out Successfully');
     
     return res.redirect('/');
 }
