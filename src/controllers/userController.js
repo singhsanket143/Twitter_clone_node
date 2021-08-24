@@ -69,11 +69,15 @@ const update = function(req, res) {
 }
 
 const createSession = function(req, res) {
+    req.flash('success', 'Signed In Successfully');
+    console.log("flash", req.flash);
     return res.redirect('/');
 }
 
 const destroySession = function(req, res) {
     req.logout();
+    req.flash('success', 'Signed Out Successfully');
+    console.log("flash", req.flash);
     return res.redirect('/');
 }
 
