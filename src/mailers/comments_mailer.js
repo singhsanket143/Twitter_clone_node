@@ -14,7 +14,7 @@ const newCommentMailer = function(tweet) {
         }
         console.log('Email Sent');
         return;
-    })
+    });
 }
 
 module.exports = {newCommentMailer};
