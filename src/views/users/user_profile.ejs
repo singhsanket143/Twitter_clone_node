@@ -9,7 +9,30 @@
     <input type="submit" value="Update User">
 </form>
 
+<form action="/users/updateAvatar" method="post" enctype="multipart/form-data">
+    <input type="file" name="avatar" />
+    <input type="submit" value="Update Avatar">
+</form>
+
 <% } %> 
 
-<p><%= profile_user.name %></p>
-<p><%= profile_user.email %></p>
+
+<div class="row no-gutters">
+    <div class="col-md-4">
+        <p><%= profile_user.name %></p>
+    </div>
+    <div class="col-md-4">
+        <p><%= profile_user.email %></p>
+
+    </div>
+    <div class="col-md-4">
+        
+        ​<picture>
+            <source srcset="/users/images/<%= profile_user.avatar %> " type="image/svg+xml">
+            <img src="/users/images/<%= profile_user.avatar %> " class="img-thumbnail" alt="...">
+        </picture>
+
+    </div>
+</div>
+
+

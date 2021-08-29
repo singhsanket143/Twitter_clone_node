@@ -7,6 +7,8 @@ const mongoStore = require('connect-mongo');
 const sassMiddleware = require('node-sass-middleware');
 const flash = require('connect-flash');
 const {setFlash} = require('./src/config/middleware');
+const multer  = require('multer')
+const upload = multer({ dest: './src/uploads/' })
 
 const passportlocal = require('./src/config/passport-local-strategy');
 
@@ -64,6 +66,13 @@ app.use(flash());
 app.use(setFlash);
 app.use('/', router);
 // app.set('layout', true);
+
+// app.post('/profile', upload.single('avatar'), function (req, res, next) {
+//     // req.file is the `avatar` file
+//     // req.body will hold the text fields, if there were any
+//     console.log("Uploaded");
+//     return res.redirect('/');
+//   })
 
 console.log(__dirname+'/src/assets');
 
