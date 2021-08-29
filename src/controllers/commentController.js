@@ -1,10 +1,11 @@
 const Comment = require('../models/comment');
 const Tweet = require('../models/tweet');
 
+const {newCommentMailer} = require('../mailers/comments_mailer');
 const create = async function(req, res) {
     // console.log(req.body);
     try {
-        const tweet = await Tweet.findById(req.body.tweet);
+        const tweet = await Tweet.findById(req.body.tweet).populate('user');
         const comment = await Comment.create({
             content: req.body.content,
             tweet: req.body.tweet,
@@ -12,6 +13,7 @@ const create = async function(req, res) {
         });
         tweet.comments.push(comment);
         tweet.save();
+        newCommentMailer(tweet);
         return res.redirect('/');
 
     } catch(err) {
