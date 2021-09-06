@@ -2,7 +2,7 @@ const Like = require('../models/like');
 const Comment = require('../models/comment');
 const Tweet = require('../models/tweet');
 
-const toggleLike = function(req, res) {
+const toggleLike = async function(req, res) {
     // /likes/toggle?id=dcsc&type=Tweet
     try {
         let likeable;
