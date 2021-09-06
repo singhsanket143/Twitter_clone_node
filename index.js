@@ -8,7 +8,8 @@ const sassMiddleware = require('node-sass-middleware');
 const flash = require('connect-flash');
 const {setFlash} = require('./src/config/middleware');
 const multer  = require('multer')
-const upload = multer({ dest: './src/uploads/' })
+const upload = multer({ dest: './src/uploads/' });
+
 
 const passportlocal = require('./src/config/passport-local-strategy');
 
@@ -18,7 +19,13 @@ const connect = require('./src/config/database');
 var expressLayouts = require('express-ejs-layouts');
 
 const app = express();
-
+app.use(cors());
+const chatEngine = require('http').Server(app);
+const {socket} = require('./src/config/sockets');
+const chatSockets = socket(chatEngine);
+// chatEngine.use(cors());
+chatEngine.listen(3001);
+console.log('Chat enginer listening at 3001');
 app.use(sassMiddleware({
     src: './src/assets/scss',
     dest: './src/assets/css',
@@ -27,7 +34,7 @@ app.use(sassMiddleware({
     prefix: '/css'
 }));
 
-app.use(cors());
+
 app.use(json());
 app.use(urlencoded({extended: true}));
 
