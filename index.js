@@ -4,7 +4,7 @@ const cors = require('cors');
 const session = require('express-session');
 const passport = require('passport');
 const mongoStore = require('connect-mongo');
-const sassMiddleware = require('node-sass-middleware');
+// const sassMiddleware = require('node-sass-middleware');
 const flash = require('connect-flash');
 const {setFlash} = require('./src/config/middleware');
 const multer  = require('multer')
@@ -26,13 +26,13 @@ const chatSockets = socket(chatEngine);
 // chatEngine.use(cors());
 chatEngine.listen(3001);
 console.log('Chat enginer listening at 3001');
-app.use(sassMiddleware({
-    src: './src/assets/scss',
-    dest: './src/assets/css',
-    debug: true,
-    outputStyle: 'expanded',
-    prefix: '/css'
-}));
+// app.use(sassMiddleware({
+//     src: './src/assets/scss',
+//     dest: './src/assets/css',
+//     debug: true,
+//     outputStyle: 'expanded',
+//     prefix: '/css'
+// }));
 
 
 app.use(json());
